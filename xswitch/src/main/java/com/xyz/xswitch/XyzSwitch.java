@@ -73,7 +73,7 @@ public class XyzSwitch extends View implements ValueAnimator.AnimatorUpdateListe
 
     private void init(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.XyzSwitch);
-        radian = ta.getInt(R.styleable.XyzSwitch_xRadian,75);
+        radian = (int) ta.getDimension(R.styleable.XyzSwitch_xRadian,45);
         ASPECT_RATIO = ta.getFloat(R.styleable.XyzSwitch_xASPECTRATIO,0.37f);
         SLIDER_RATIO = ta.getFloat(R.styleable.XyzSwitch_xSLIDERRATIO,0.56f);
         backgroundFromColor = ta.getColor(R.styleable.XyzSwitch_xBackgroundFromColor,0xff443c6f);

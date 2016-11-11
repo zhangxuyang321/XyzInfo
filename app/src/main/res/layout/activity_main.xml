@@ -1,23 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:background="@drawable/bg"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
     tools:context="com.xyz.info.MainActivity">
+
+    <TextView
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="个人资料设定"
+        android:textColor="#ffffff"
+        android:textSize="25dp" />
 
     <com.xyz.xswitch.XyzSwitch
         android:layout_width="200dp"
         android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        app:xIconHeight="40dp"
+        app:xIconWidth="40dp"
         app:xLeftIcon="@mipmap/lady"
-        app:xRightIcon="@mipmap/man"/>
+        app:xRadian="40dp"
+        app:xRightIcon="@mipmap/man" />
+
     <com.xyz.xruler.XyzRuler
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        />
+        app:rBorderColor="#ac71ff"
+        app:rBorderWidth="5dp"
+        app:rLineHeight="12dp"
+        app:rTrigonSize="30dp" />
+
+    <com.xyz.xruler.XyzRuler
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        app:rBorderColor="#ac71ff"
+        app:rBorderWidth="5dp"
+        app:rIsTop="false"
+        app:rLineHeight="12dp"
+        app:rTrigonSize="18dp" />
+
+    <com.xyz.xruler.XyzRuler
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        app:rBegin="20"
+        app:rBorderColor="#50c1ea"
+        app:rBorderWidth="5dp"
+        app:rIndicateHeight="10dp"
+        app:rIsRect="false"
+        app:rLineColor="#ff0000"
+        app:rLineHeight="12dp"
+        app:rStep="2"
+        app:rTrigonSize="18dp" />
+
+
+    <com.xyz.xruler.XyzRuler
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        app:rBegin="20"
+        app:rBorderColor="#ffc0fa"
+        app:rBorderWidth="5dp"
+        app:rIndicateHeight="10dp"
+        app:rIsRect="false"
+        app:rIsTop="false"
+        app:rLineColor="#ff00ff"
+        app:rLineHeight="12dp"
+        app:rStep="2"
+        app:rTextColor="#00ff00"
+        app:rTrigonSize="18dp" />
 </LinearLayout>

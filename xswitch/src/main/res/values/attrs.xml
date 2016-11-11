@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="XyzSwitch">
-        <attr name="xRadian" format="integer" />
+        <attr name="xRadian" format="dimension" />
         <attr name="xASPECTRATIO" format="float" />
         <attr name="xSLIDERRATIO" format="float" />
         <attr name="xIconWidth" format="dimension" />

@@ -42,6 +42,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
     private boolean isLeft;
     private boolean isDrag = true;
 
+    private float borderWidth;      //边框宽度
     private float lineWidth;        //刻度线宽
     private int borderColor;        //边框颜色
     private int lineColor;          //线的颜色
@@ -73,6 +74,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
 
     private void init(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.XyzRuler);
+        borderWidth = ta.getDimension(R.styleable.XyzRuler_rBorderWidth,8);
         lineWidth = ta.getFloat(R.styleable.XyzRuler_rLineWidth,2.0f);
         borderColor = ta.getColor(R.styleable.XyzRuler_rBorderColor, Color.BLUE);
         lineColor  = ta.getColor(R.styleable.XyzRuler_rLineColor,Color.WHITE);
@@ -101,7 +103,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         bPaint = new Paint();
         bPaint.setAntiAlias(true);
         bPaint.setStyle(Paint.Style.STROKE);
-        bPaint.setStrokeWidth(8.0f);
+        bPaint.setStrokeWidth(borderWidth);
         bPaint.setColor(borderColor);
 
         tPaint = new Paint();

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="XyzRuler">
+        <attr name="rBorderWidth" format="dimension" />
         <attr name="rBorderColor" format="color" />
         <attr name="rLineColor" format="color" />
         <attr name="rTrigonSize" format="dimension" />
