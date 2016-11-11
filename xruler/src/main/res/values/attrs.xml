@@ -7,7 +7,7 @@
         <attr name="rTrigonSize" format="dimension" />
         <attr name="rPixel" format="integer" />
         <attr name="rStep" format="integer" />
-        <attr name="rLineWidth" format="float" />
+        <attr name="rLineWidth" format="dimension" />
         <attr name="rTextSize" format="dimension" />
         <attr name="rTextColor" format="color" />
         <attr name="rLineHeight" format="dimension" />

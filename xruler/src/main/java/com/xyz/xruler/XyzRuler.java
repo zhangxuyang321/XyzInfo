@@ -75,7 +75,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
     private void init(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.XyzRuler);
         borderWidth = ta.getDimension(R.styleable.XyzRuler_rBorderWidth,8);
-        lineWidth = ta.getFloat(R.styleable.XyzRuler_rLineWidth,2.0f);
+        lineWidth = ta.getDimension(R.styleable.XyzRuler_rLineWidth,2.0f);
         borderColor = ta.getColor(R.styleable.XyzRuler_rBorderColor, Color.BLUE);
         lineColor  = ta.getColor(R.styleable.XyzRuler_rLineColor,Color.WHITE);
         trigonSize = (int) ta.getDimension(R.styleable.XyzRuler_rTextSize,20);

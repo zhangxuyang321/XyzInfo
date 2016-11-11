@@ -34,8 +34,9 @@
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        app:rBorderColor="#ac71ff"
+        app:rBorderColor="#acF1ff"
         app:rBorderWidth="5dp"
+        app:rLineWidth="3dp"
         app:rLineHeight="12dp"
         app:rTrigonSize="30dp" />
 
@@ -44,10 +45,11 @@
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        app:rBorderColor="#ac71ff"
+        app:rBorderColor="#acffaf"
         app:rBorderWidth="5dp"
         app:rIsTop="false"
         app:rLineHeight="12dp"
+        app:rPixel="20"
         app:rTrigonSize="18dp" />
 
     <com.xyz.xruler.XyzRuler
