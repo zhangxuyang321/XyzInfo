@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="XyzSwitch">
+        <attr name="xRadian" format="integer" />
+        <attr name="xASPECTRATIO" format="float" />
+        <attr name="xSLIDERRATIO" format="float" />
+        <attr name="xIconWidth" format="dimension" />
+        <attr name="xIconHeight" format="dimension" />
+        <attr name="xBackgroundFromColor" format="color" />
+        <attr name="xBackgroundToColor" format="color" />
+        <attr name="xSliderFromColor" format="color" />
+        <attr name="xSliderToColor" format="color" />
+        <attr name="xLeftIcon" format="reference" />
+        <attr name="xRightIcon" format="reference" />
+    </declare-styleable>
+</resources>

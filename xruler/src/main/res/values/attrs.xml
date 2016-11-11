@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="XyzRuler">
+        <attr name="rBorderColor" format="color" />
+        <attr name="rLineColor" format="color" />
+        <attr name="rTrigonSize" format="dimension" />
+        <attr name="rPixel" format="integer" />
+        <attr name="rStep" format="integer" />
+        <attr name="rLineWidth" format="float" />
+        <attr name="rTextSize" format="dimension" />
+        <attr name="rTextColor" format="color" />
+        <attr name="rLineHeight" format="dimension" />
+        <attr name="rLineToText" format="dimension" />
+        <attr name="rBegin" format="integer" />
+        <attr name="rEnd" format="integer" />
+        <attr name="rMinVelocity" format="integer" />
+        <attr name="rIndicateHeight" format="dimension" />
+        <attr name="rIsRect" format="boolean" />
+        <attr name="rIsTop" format="boolean" />
+    </declare-styleable>
+</resources>
