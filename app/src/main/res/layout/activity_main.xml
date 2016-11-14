@@ -13,16 +13,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:text="个人资料设定"
         android:textColor="#ffffff"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:id="@+id/textView" />
 
     <com.xyz.xswitch.XyzSwitch
+        android:id="@+id/xswitch"
         android:layout_width="200dp"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="35dp"
         app:xIconHeight="40dp"
         app:xIconWidth="40dp"
         app:xLeftIcon="@mipmap/lady"
@@ -46,7 +48,7 @@
             tools:text="体重\n950\nkg" />
 
         <com.xyz.xruler.XyzRuler
-            android:id="@+id/ruler"
+            android:id="@+id/ruler1"
             android:layout_width="242dp"
             android:layout_height="56dp"
             app:rBegin="40"
@@ -76,6 +78,7 @@
             tools:text="身高\n170\ncm" />
 
         <com.xyz.xruler.XyzRuler
+            android:id="@+id/ruler2"
             android:layout_width="242dp"
             android:layout_height="56dp"
             app:rBegin="90"
@@ -107,9 +110,10 @@
             tools:text="出生年\n1970" />
 
         <com.xyz.xruler.XyzRuler
+            android:id="@+id/ruler3"
             android:layout_width="242dp"
             android:layout_height="56dp"
-            app:rBegin="1900"
+            app:rBegin="1940"
             app:rBorderColor="#50c1ea"
             app:rBorderWidth="5dp"
             app:rEnd="2200"
@@ -139,6 +143,7 @@
             tools:text="每日运动\n60\n分钟" />
 
         <com.xyz.xruler.XyzRuler
+            android:id="@+id/ruler4"
             android:layout_width="242dp"
             android:layout_height="56dp"
             app:rBegin="0"
