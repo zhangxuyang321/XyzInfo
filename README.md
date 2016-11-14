@@ -72,6 +72,12 @@
         app:xRadian="40dp"
         app:xRightIcon="@mipmap/man" />
       ```
+      
+### xRuler使用
+
+###### Gradle   
+            
+           
    
 ### LICENSE 开源协议
 
