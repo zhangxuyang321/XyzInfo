@@ -27,6 +27,7 @@
     Gradle compile 'com.xyz.xswitch:xswitch:1.0.0'
     
     属性介绍
+    
     属性 | 介绍 | 类型 | 默认 | 是否必须
     --- | --- | --- | --- | ---
     xRadian | 圆角弧度 | dimension | 45 |否
