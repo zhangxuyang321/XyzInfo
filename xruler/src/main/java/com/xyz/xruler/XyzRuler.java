@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
@@ -38,6 +39,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
     private int lastMoveX = 0;
     private int halfWidth;
     private int sumPixel;
+    private int selectItem;
     private boolean isAnim = false;
     private boolean isLeft;
     private boolean isDrag = true;
@@ -74,23 +76,24 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
 
     private void init(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.XyzRuler);
-        borderWidth = ta.getDimension(R.styleable.XyzRuler_rBorderWidth,8);
-        lineWidth = ta.getDimension(R.styleable.XyzRuler_rLineWidth,2.0f);
+        borderWidth = ta.getDimension(R.styleable.XyzRuler_rBorderWidth, 8);
+        lineWidth = ta.getDimension(R.styleable.XyzRuler_rLineWidth, 2.0f);
         borderColor = ta.getColor(R.styleable.XyzRuler_rBorderColor, Color.BLUE);
-        lineColor  = ta.getColor(R.styleable.XyzRuler_rLineColor,Color.WHITE);
-        trigonSize = (int) ta.getDimension(R.styleable.XyzRuler_rTextSize,20);
-        pixel = ta.getInt(R.styleable.XyzRuler_rPixel,15);
-        step = ta.getInt(R.styleable.XyzRuler_rStep,1);
+        lineColor = ta.getColor(R.styleable.XyzRuler_rLineColor, Color.WHITE);
+        trigonSize = (int) ta.getDimension(R.styleable.XyzRuler_rTextSize, 20);
+        pixel = ta.getInt(R.styleable.XyzRuler_rPixel, 15);
+        step = ta.getInt(R.styleable.XyzRuler_rStep, 1);
         int textSize = (int) ta.getDimension(R.styleable.XyzRuler_rTextSize, 30);
         int textColor = ta.getColor(R.styleable.XyzRuler_rTextColor, Color.WHITE);
-        lineHeight = (int) ta.getDimension(R.styleable.XyzRuler_rLineHeight,25);
-        lineToText = (int) ta.getDimension(R.styleable.XyzRuler_rLineToText,35);
-        begin = ta.getInt(R.styleable.XyzRuler_rBegin,0);
-        end = ta.getInt(R.styleable.XyzRuler_rEnd,1000);
-        minVelocity = ta.getInt(R.styleable.XyzRuler_rMinVelocity,500);
-        indicateHeight = (int) ta.getDimension(R.styleable.XyzRuler_rIndicateHeight,0);
-        isRect = ta.getBoolean(R.styleable.XyzRuler_rIsRect,true);
-        isTop = ta.getBoolean(R.styleable.XyzRuler_rIsTop,true);
+        lineHeight = (int) ta.getDimension(R.styleable.XyzRuler_rLineHeight, 25);
+        lineToText = (int) ta.getDimension(R.styleable.XyzRuler_rLineToText, 35);
+        begin = ta.getInt(R.styleable.XyzRuler_rBegin, 0);
+        selectItem = begin;
+        end = ta.getInt(R.styleable.XyzRuler_rEnd, 1000);
+        minVelocity = ta.getInt(R.styleable.XyzRuler_rMinVelocity, 500);
+        indicateHeight = (int) ta.getDimension(R.styleable.XyzRuler_rIndicateHeight, 0);
+        isRect = ta.getBoolean(R.styleable.XyzRuler_rIsRect, true);
+        isTop = ta.getBoolean(R.styleable.XyzRuler_rIsTop, true);
         ta.recycle();
         scroller = new Scroller(context);
         setOverScrollMode(OVER_SCROLL_ALWAYS);
@@ -115,15 +118,28 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
 
         sumPixel = ((end - begin) / step) * pixel;
 
+        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if(null!= onSelectItem){
+                    selectItem = onSelectItem.setSelectItem();
+                }
+                selectItem();
+                getViewTreeObserver().removeGlobalOnLayoutListener(this);
+            }
+        });
+
     }
 
+
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        mWidth = w;
-        mHeight = h;
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        mWidth = MeasureSpec.getSize(widthMeasureSpec);
+        mHeight = MeasureSpec.getSize(heightMeasureSpec);
         startY = 0;
-        borderRectF = new RectF(0, 0, w, h);
+        borderRectF = new RectF(0, 0, mWidth, mHeight);
         halfWidth = mWidth / 2;
     }
 
@@ -140,8 +156,8 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
     private void drawScale(Canvas canvas) {
         lPaint.setColor(lineColor);
         lPaint.setStrokeWidth(lineWidth);
-        if(onRulerValueChangeListener!=null && !isAnim){
-            onRulerValueChangeListener.value((-sumMoveX+halfWidth)/pixel*step+begin);
+        if (onRulerValueChangeListener != null && sumMoveX <= halfWidth && -sumMoveX <= sumPixel - halfWidth) {
+            onRulerValueChangeListener.value((-sumMoveX + halfWidth) / pixel * step + begin);
         }
         for (int x = 0; x < mWidth; x++) {
             int y = startY + lineHeight;
@@ -155,11 +171,11 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
             }
             int text = (-sumMoveX + x) / pixel * step + begin;
             if (text >= begin && text <= end && ((-sumMoveX + x) % pixel) == 0) {
-                canvas.drawLine(x, isTop?startY:mHeight, x, isTop?y:mHeight-y, lPaint);
+                canvas.drawLine(x, isTop ? startY : mHeight, x, isTop ? y : mHeight - y, lPaint);
             }
             if (isDrawText) {
                 if (text >= begin && text <= end) {
-                    canvas.drawText(String.valueOf(text), x, isTop?y + lineToText:mHeight-y-lineToText, tPaint);
+                    canvas.drawText(String.valueOf(text), x, isTop ? y + lineToText : mHeight - y - lineToText, tPaint);
                 }
             }
         }
@@ -169,9 +185,9 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         canvas.drawRect(borderRectF, bPaint);
 
         Path path = new Path();
-        path.moveTo(halfWidth - trigonSize / 2, isTop?0:mHeight);
-        path.lineTo(halfWidth + trigonSize / 2, isTop?0:mHeight);
-        path.lineTo(halfWidth, isTop?trigonSize / 2:mHeight-trigonSize / 2);
+        path.moveTo(halfWidth - trigonSize / 2, isTop ? 0 : mHeight);
+        path.lineTo(halfWidth + trigonSize / 2, isTop ? 0 : mHeight);
+        path.lineTo(halfWidth, isTop ? trigonSize / 2 : mHeight - trigonSize / 2);
         path.close();
         canvas.drawPath(path, bPaint);
     }
@@ -182,7 +198,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         canvas.drawLine(0, isTop ? 0 : mHeight, mWidth, isTop ? 0 : mHeight, lPaint);
         lPaint.setColor(borderColor);
         lPaint.setStrokeWidth(lineWidth * 1.5f);
-        canvas.drawLine(halfWidth, isTop ? 0 : mHeight, halfWidth, isTop ? mHeight-indicateHeight : indicateHeight, lPaint);
+        canvas.drawLine(halfWidth, isTop ? 0 : mHeight, halfWidth, isTop ? mHeight - indicateHeight : indicateHeight, lPaint);
     }
 
     @Override
@@ -263,7 +279,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
             }
             invalidate();
         } else {
-            if(!isDrag) {
+            if (!isDrag) {
                 if (sumMoveX > halfWidth || -sumMoveX + halfWidth > sumPixel) {
                     correct();
                     scroller.abortAnimation();
@@ -318,6 +334,15 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         }
     }
 
+    private void selectItem() {
+        if (selectItem > end || selectItem < begin) {
+            throw new RuntimeException("设置所选值超出范围");
+        }
+        sumMoveX = -(((selectItem-begin) / step * pixel) - halfWidth);
+        System.out.println("sumMoveX=" + sumMoveX);
+        invalidate();
+    }
+
     @Override
     public void onAnimationStart(Animator animation) {
         isAnim = true;
@@ -340,6 +365,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
 
     /**
      * 监听ruler值的变话
+     *
      * @param onRulerValueChangeListener 监听器
      */
     public void setOnRulerValueChangeListener(RulerValue onRulerValueChangeListener) {
@@ -347,7 +373,22 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
     }
 
     private RulerValue onRulerValueChangeListener;
-    public interface RulerValue{
+
+    public interface RulerValue {
         void value(int value);
+    }
+
+    /**
+     * 设置选中的条目因需要在加载完成后设置才有用,所以才用接口的形式
+     * @param onSelectItem 设置选中的Item
+     */
+    public void setOnSelectItem(SelectItem onSelectItem) {
+        this.onSelectItem = onSelectItem;
+    }
+
+    private SelectItem onSelectItem;
+
+    public interface SelectItem{
+        int setSelectItem();
     }
 }

@@ -10,10 +10,10 @@
     tools:context="com.xyz.info.MainActivity">
 
     <TextView
-        android:layout_width="186dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="个人资料设定"
         android:textColor="#ffffff"
         android:textSize="25dp" />
@@ -29,16 +29,32 @@
         app:xRadian="40dp"
         app:xRightIcon="@mipmap/man" />
 
-    <com.xyz.xruler.XyzRuler
-        android:layout_width="280dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:rBorderColor="#acF1ff"
-        app:rBorderWidth="5dp"
-        app:rLineWidth="3dp"
-        app:rLineHeight="12dp"
-        app:rTrigonSize="30dp" />
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:text="50kg" />
+
+        <com.xyz.xruler.XyzRuler
+            android:id="@+id/ruler"
+            android:layout_width="260dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            app:rBorderColor="#acF1ff"
+            app:rBorderWidth="5dp"
+            app:rLineHeight="12dp"
+            app:rLineWidth="3dp"
+            app:rTrigonSize="30dp" />
+    </LinearLayout>
 
     <com.xyz.xruler.XyzRuler
         android:layout_width="280dp"
@@ -57,14 +73,15 @@
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        app:rBegin="20"
+        app:rBegin="-40"
         app:rBorderColor="#50c1ea"
         app:rBorderWidth="5dp"
+        app:rEnd="40"
         app:rIndicateHeight="10dp"
         app:rIsRect="false"
         app:rLineColor="#ff0000"
         app:rLineHeight="12dp"
-        app:rStep="2"
+        app:rStep="1"
         app:rTrigonSize="18dp" />
 
 
