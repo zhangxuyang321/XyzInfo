@@ -22,7 +22,24 @@
 ### UI
    ![1](https://github.com/zhangxuyang321/XyzInfo/blob/master/ui/2.gif)
    
-   
+### xswitch使用
+
+    Gradle compile 'com.xyz.xswitch:xswitch:1.0.0'
+    
+    属性介绍
+    属性 | 介绍 | 类型 | 默认 | 是否必须
+    --- | --- | --- | --- | ---
+    xRadian | 圆角弧度 | dimension | 45 |否
+    xASPECTRATIO | 宽高比 | float | 0.37f | 否
+    xASPEERRATIO | 滑块与背景宽度比 | float | 0.56f | 否
+    xIconWidth | 图片宽度 |dimension | 80 | 否
+    xIconHeight | 图片高度 | dimension | 80 | 否
+    xBackgroundFromColor | 背景起始颜色 | color |0xff443c6f | 否
+    xBackgroundToColor |背景终止颜色 | color | 0xffff5a73 | 否
+    xSliderFromColor | 滑块起始颜色 | color | 0xffff5a73 | 否
+    xSliderToColor |滑块终止颜色 | color | 0xff443c6f | 否
+    xLeftIcon | 左侧图片 | reference | null | 是
+    xRightIcon | 右侧图片 | reference | null |是
    
 ### LICENSE 开源协议
 
