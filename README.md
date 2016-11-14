@@ -24,7 +24,9 @@
    
 ### xswitch使用
 
-    Gradle compile 'com.xyz.xswitch:xswitch:1.0.0'
+###### Gradle 
+
+       compile 'com.xyz.xswitch:xswitch:1.0.0'
     
 ###### 属性介绍
     
@@ -41,6 +43,35 @@
     xSliderToColor |滑块终止颜色 | color | 0xff443c6f | 否
     xLeftIcon | 左侧图片 | reference | null | 是
     xRightIcon | 右侧图片 | reference | null |是
+    
+###### 代码
+      
+     ```
+     XyzSwitch xSwitch =  (XyzSwitch) findViewById(R.id.xswitch);
+     xSwitch.setOnXyzSwitchChangeListener(new XyzSwitch.XyzSwitchChange() {
+            @Override
+            public void changed(boolean isRight) {
+                Toast.makeText(MainActivity.this,isRight?"男":"女",Toast.LENGTH_SHORT).show();
+            }
+        });
+     
+     ```
+    
+###### layout
+
+      ```
+      <com.xyz.xswitch.XyzSwitch
+        android:id="@+id/xswitch"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp"
+        app:xIconHeight="40dp"
+        app:xIconWidth="40dp"
+        app:xLeftIcon="@mipmap/lady"
+        app:xRadian="40dp"
+        app:xRightIcon="@mipmap/man" />
+      ```
    
 ### LICENSE 开源协议
 
