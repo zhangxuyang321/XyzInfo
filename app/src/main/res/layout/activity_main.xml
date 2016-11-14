@@ -32,73 +32,126 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv1"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            tools:text="50kg" />
+            android:textSize="14dp"
+            tools:text="体重\n950\nkg" />
 
         <com.xyz.xruler.XyzRuler
             android:id="@+id/ruler"
-            android:layout_width="260dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="242dp"
+            android:layout_height="56dp"
+            app:rBegin="40"
             app:rBorderColor="#acF1ff"
             app:rBorderWidth="5dp"
-            app:rLineHeight="12dp"
+            app:rEnd="300"
+            app:rLineHeight="10dp"
             app:rLineWidth="3dp"
+            app:rTextSize="10dp"
             app:rTrigonSize="30dp" />
     </LinearLayout>
 
-    <com.xyz.xruler.XyzRuler
-        android:layout_width="280dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        app:rBorderColor="#acffaf"
-        app:rBorderWidth="5dp"
-        app:rIsTop="false"
-        app:rLineHeight="12dp"
-        app:rPixel="20"
-        app:rTrigonSize="18dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <com.xyz.xruler.XyzRuler
-        android:layout_width="280dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        app:rBegin="-40"
-        app:rBorderColor="#50c1ea"
-        app:rBorderWidth="5dp"
-        app:rEnd="40"
-        app:rIndicateHeight="10dp"
-        app:rIsRect="false"
-        app:rLineColor="#ff0000"
-        app:rLineHeight="12dp"
-        app:rStep="1"
-        app:rTrigonSize="18dp" />
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp"
+            tools:text="身高\n170\ncm" />
 
+        <com.xyz.xruler.XyzRuler
+            android:layout_width="242dp"
+            android:layout_height="56dp"
+            app:rBegin="90"
+            app:rBorderColor="#acffaf"
+            app:rBorderWidth="5dp"
+            app:rEnd="300"
+            app:rIsTop="false"
+            app:rLineHeight="10dp"
+            app:rLineToText="6dp"
+            app:rPixel="20"
+            app:rTextSize="10dp"
+            app:rTrigonSize="18dp" />
+    </LinearLayout>
 
-    <com.xyz.xruler.XyzRuler
-        android:layout_width="280dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        app:rBegin="20"
-        app:rBorderColor="#ffc0fa"
-        app:rBorderWidth="5dp"
-        app:rIndicateHeight="10dp"
-        app:rIsRect="false"
-        app:rIsTop="false"
-        app:rLineColor="#ff00ff"
-        app:rLineHeight="12dp"
-        app:rStep="2"
-        app:rTextColor="#00ff00"
-        app:rTrigonSize="18dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp"
+            tools:text="出生年\n1970" />
+
+        <com.xyz.xruler.XyzRuler
+            android:layout_width="242dp"
+            android:layout_height="56dp"
+            app:rBegin="1900"
+            app:rBorderColor="#50c1ea"
+            app:rBorderWidth="5dp"
+            app:rEnd="2200"
+            app:rIndicateHeight="10dp"
+            app:rIsRect="false"
+            app:rLineColor="#ff0000"
+            app:rLineHeight="10dp"
+            app:rStep="1"
+            app:rTextSize="10dp"
+            app:rTrigonSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp"
+            tools:text="每日运动\n60\n分钟" />
+
+        <com.xyz.xruler.XyzRuler
+            android:layout_width="242dp"
+            android:layout_height="56dp"
+            app:rBegin="0"
+            app:rEnd="1000"
+            app:rBorderColor="#ffc0fa"
+            app:rIndicateHeight="10dp"
+            app:rIsRect="false"
+            app:rIsTop="false"
+            app:rStep="1"
+            app:rLineColor="#ff00ff"
+            app:rLineHeight="10dp"
+            app:rLineToText="7dp"
+            app:rTextColor="#00ff00"
+            app:rTrigonSize="10dp" />
+    </LinearLayout>
 </LinearLayout>

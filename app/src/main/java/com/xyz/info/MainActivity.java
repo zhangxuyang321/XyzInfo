@@ -8,14 +8,12 @@ import com.xyz.xruler.XyzRuler;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tv;
     private XyzRuler ruler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tv = (TextView) findViewById(R.id.tv);
         ruler = (XyzRuler) findViewById(R.id.ruler);
         /**
          * 设置选中的条目
@@ -33,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         ruler.setOnRulerValueChangeListener(new XyzRuler.RulerValue() {
             @Override
             public void value(int value) {
-                tv.setText(value + "kg");
             }
         });
     }
