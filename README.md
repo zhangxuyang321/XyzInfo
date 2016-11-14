@@ -1,6 +1,8 @@
 # XyzInfo
-  自定义Switch 和 Ruler控件
+
+      自定义Switch 和 Ruler控件
 ###介绍
+
       xSwitch | xRuler
       --- | ---
       支持背与滑块颜色自定义          | 支持两种显示模式
@@ -11,10 +13,17 @@
       支持自定义图片(建议灰色)以及大小 |支持自定义刻度基本单位(最小刻度单位)
                                   |支持自定义起止范围
                                   |支持自定义字体颜色大小
-                                  |支持自定义滑动速率
+                                  |支持自定义最小滑动速率
                                   |支持自定义刻度与文字之间距离
-                                  |支持回弹动画
+                                  |支持边界回弹动画
+                                  |支持Fling滑动
                                   |支持设置默认值
       
 ### UI
    ![1](https://github.com/zhangxuyang321/XyzInfo/blob/master/ui/2.gif)
+   
+   
+   
+### LICENSE 开源协议
+
+    Apache License Version 2.0
