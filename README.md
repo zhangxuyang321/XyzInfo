@@ -21,9 +21,9 @@
                                   |支持自定义设置回弹动画基本时间
       
 ### UI
-   ![1](https://github.com/zhangxuyang321/XyzInfo/blob/master/ui/2.gif)
-   
    [Download Demo](https://github.com/zhangxuyang321/XyzInfo/blob/master/apk/demo.apk)
+   
+   ![1](https://github.com/zhangxuyang321/XyzInfo/blob/master/ui/2.gif)
    
 ### xswitch使用
 
