@@ -27,6 +27,8 @@
    
 ### xswitch使用
 
+      因为使用ColorMatrix使灰色图片变成白色,所以icon需要为灰色图片
+
 ###### Gradle 
 
        compile 'com.xyz.xswitch:xswitch:1.0.1'
