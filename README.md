@@ -84,7 +84,7 @@
 
 ###### Gradle   
             
-         compile 'com.xyz.xruler:xruler:1.0.2' 
+         compile 'com.xyz.xruler:xruler:1.0.3' 
 
 ###### 属性介绍
 
