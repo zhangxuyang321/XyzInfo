@@ -42,6 +42,7 @@
     xBackgroundToColor |背景终止颜色 | color | 0xffff5a73 | 否
     xSliderFromColor | 滑块起始颜色 | color | 0xffff5a73 | 否
     xSliderToColor |滑块终止颜色 | color | 0xff443c6f | 否
+    xChangedTime | 滑块滑动时间 | int | 300 | 否
     xLeftIcon | 左侧图片 | reference | null | 是
     xRightIcon | 右侧图片 | reference | null |是
     
@@ -71,6 +72,7 @@
         app:xIconWidth="40dp"
         app:xLeftIcon="@mipmap/lady"
         app:xRadian="40dp"
+        app:xChangedTime="100"
         app:xRightIcon="@mipmap/man" />
       ```
       
