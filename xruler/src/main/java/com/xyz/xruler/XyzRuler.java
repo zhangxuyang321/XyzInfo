@@ -27,6 +27,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
     private Paint bPaint; //边框画笔
     private Paint lPaint; //线画笔
     private Paint tPaint; //字画笔
+    private Paint sPaint; //三角画笔
     private RectF borderRectF;
     private VelocityTracker velocityTracker;
     private Scroller scroller;
@@ -81,7 +82,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         lineWidth = ta.getDimension(R.styleable.XyzRuler_rLineWidth, 2.0f);
         borderColor = ta.getColor(R.styleable.XyzRuler_rBorderColor, Color.BLUE);
         lineColor = ta.getColor(R.styleable.XyzRuler_rLineColor, Color.WHITE);
-        trigonSize = (int) ta.getDimension(R.styleable.XyzRuler_rTextSize, 20);
+        trigonSize = (int) ta.getDimension(R.styleable.XyzRuler_rTrigonSize, 20);
         pixel = ta.getInt(R.styleable.XyzRuler_rPixel, 15);
         step = ta.getInt(R.styleable.XyzRuler_rStep, 1);
         int textSize = (int) ta.getDimension(R.styleable.XyzRuler_rTextSize, 30);
@@ -117,6 +118,12 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         tPaint.setColor(textColor);
         tPaint.setTextSize(textSize);
         tPaint.setStyle(Paint.Style.FILL);
+
+        sPaint = new Paint();
+        sPaint.setAntiAlias(true);
+        sPaint.setStyle(Paint.Style.FILL);
+        sPaint.setStrokeWidth(borderWidth);
+        sPaint.setColor(borderColor);
 
         sumPixel = ((end - begin) / step) * pixel;
 
@@ -191,7 +198,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         path.lineTo(halfWidth + trigonSize / 2, isTop ? 0 : mHeight);
         path.lineTo(halfWidth, isTop ? trigonSize / 2 : mHeight - trigonSize / 2);
         path.close();
-        canvas.drawPath(path, bPaint);
+        canvas.drawPath(path, sPaint);
     }
 
     private void drawLineIndicate(Canvas canvas) {
@@ -199,7 +206,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         lPaint.setStrokeWidth(lineWidth);
         canvas.drawLine(0, isTop ? 0 : mHeight, mWidth, isTop ? 0 : mHeight, lPaint);
         lPaint.setColor(borderColor);
-        lPaint.setStrokeWidth(lineWidth * 1.5f);
+        lPaint.setStrokeWidth(borderWidth);
         canvas.drawLine(halfWidth, isTop ? 0 : mHeight, halfWidth, isTop ? mHeight - indicateHeight : indicateHeight, lPaint);
     }
 

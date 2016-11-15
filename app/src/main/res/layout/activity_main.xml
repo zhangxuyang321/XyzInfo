@@ -10,14 +10,14 @@
     tools:context="com.xyz.info.MainActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:text="个人资料设定"
         android:textColor="#ffffff"
-        android:textSize="25dp"
-        android:id="@+id/textView" />
+        android:textSize="25dp" />
 
     <com.xyz.xswitch.XyzSwitch
         android:id="@+id/xswitch"
@@ -25,11 +25,11 @@
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="35dp"
+        app:xChangedTime="100"
         app:xIconHeight="40dp"
         app:xIconWidth="40dp"
         app:xLeftIcon="@mipmap/lady"
         app:xRadian="40dp"
-        app:xChangedTime="100"
         app:xRightIcon="@mipmap/man" />
 
     <LinearLayout
@@ -52,15 +52,15 @@
             android:id="@+id/ruler1"
             android:layout_width="242dp"
             android:layout_height="56dp"
+            app:rAnimTime="100"
             app:rBegin="40"
             app:rBorderColor="#acF1ff"
             app:rBorderWidth="5dp"
             app:rEnd="300"
-            app:rAnimTime="100"
             app:rLineHeight="10dp"
             app:rLineWidth="3dp"
             app:rTextSize="10dp"
-            app:rTrigonSize="30dp" />
+            app:rTrigonSize="20dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -117,7 +117,7 @@
             android:layout_height="56dp"
             app:rBegin="1940"
             app:rBorderColor="#50c1ea"
-            app:rBorderWidth="5dp"
+            app:rBorderWidth="2dp"
             app:rEnd="2200"
             app:rIndicateHeight="10dp"
             app:rIsRect="false"
@@ -149,15 +149,16 @@
             android:layout_width="242dp"
             android:layout_height="56dp"
             app:rBegin="0"
-            app:rEnd="1000"
             app:rBorderColor="#ffc0fa"
+            app:rBorderWidth="2dp"
+            app:rEnd="1000"
             app:rIndicateHeight="10dp"
             app:rIsRect="false"
             app:rIsTop="false"
-            app:rStep="1"
             app:rLineColor="#ff00ff"
             app:rLineHeight="10dp"
             app:rLineToText="7dp"
+            app:rStep="1"
             app:rTextColor="#00ff00"
             app:rTrigonSize="10dp" />
     </LinearLayout>

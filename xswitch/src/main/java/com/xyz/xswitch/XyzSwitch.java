@@ -18,8 +18,6 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import static java.lang.reflect.Array.getInt;
-
 /**
  * Created by xyz on 2016/11/4.
  * xyz@163.com

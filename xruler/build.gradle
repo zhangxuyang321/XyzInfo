@@ -37,7 +37,7 @@ dependencies {
     libraryName = 'XRuler'
     artifact = 'xruler'
     libraryDescription = ''
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.3'
 
     siteUrl = 'https://github.com/zhangxuyang321/XyzInfo'
     gitUrl = 'https://github.com/zhangxuyang321/XyzInfo.git'
