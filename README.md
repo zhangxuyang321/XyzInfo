@@ -23,6 +23,8 @@
 ### UI
    ![1](https://github.com/zhangxuyang321/XyzInfo/blob/master/ui/2.gif)
    
+   
+   
 ### xswitch使用
 
 ###### Gradle 
@@ -80,8 +82,73 @@
 
 ###### Gradle   
             
-           
+         compile 'com.xyz.xruler:xruler:1.0.2' 
+
+###### 属性介绍
+
+    属性 | 介绍 | 类型 | 默认 | 是否必须
+    --- | --- | --- | --- | ---
+    rBorderWidth | 边框宽度(指针模式下为指针宽度)| dimension | 8 | 否
+    rBorderColor | 边框颜色(指针模式下为指针颜色)| color | Color.BLUE | 否
+    rLineColor | 刻度线的颜色 | color | Color.WHITE | 否
+    rTrigonSize | 边框模式下三角形大小 | dimension | 20 | 否
+    rPixel | 最小刻度像素大小 | integer | 15 | 否
+    rStep | 刻度最小单位 | integer | 1 | 否
+    rLineWidth | 刻度线宽度 | dimension | 2 | 否
+    rTextSize | 刻度文字大小 | dimension | 30 | 否
+    rTextColor | 刻度文字颜色 | color | Color.WHITE | 否
+    rLineHeight | 刻度线高度 | dimension | 25 | 否
+    rLineToText | 刻度文字与刻度线距离 | dimension | 35 | 否
+    rBegin | 刻度尺范围开始值 | integer | 0 | 否
+    rEnd | 刻度尺范围结束值 | integer | 1000 | 否
+    rMinVelocity | 触发惯性滑动的最小速率 | integer | 500 | 否
+    rAnimTime | 回弹动画时间基准值 | integer | 300 | 否
+    rIndicateHeight | 指针高度差值(数值越大高度越小) | dimension | 0 | 否
+    rIsRect | 是否是边框模式 | boolean | true | 否
+    rIsTop | 刻度线是否在顶部 | boolean | true | 否
+    
+###### 代码
+
+      ```
+       /**
+         * 设置选中的条目
+         */
+        ruler1.setOnSelectItem(new XyzRuler.SelectItem() {
+            @Override
+            public int setSelectItem() {
+                return 60;
+            }
+        });
+        /**
+         * 监听拖动时值得变化
+         */
+        ruler1.setOnRulerValueChangeListener(new XyzRuler.RulerValue() {
+            @Override
+            public void value(int value) {
+                tv1.setText("体重\n"+value+"\nkg");
+            }
+        });
+      ```
    
+###### layout
+
+      ```
+      <com.xyz.xruler.XyzRuler
+            android:id="@+id/ruler1"
+            android:layout_width="242dp"
+            android:layout_height="56dp"
+            app:rAnimTime="100"
+            app:rBegin="40"
+            app:rBorderColor="#acF1ff"
+            app:rBorderWidth="5dp"
+            app:rEnd="300"
+            app:rLineHeight="10dp"
+            app:rLineWidth="3dp"
+            app:rTextSize="10dp"
+            app:rTrigonSize="20dp" />
+      
+      ```
+      
 ### LICENSE 开源协议
 
     Apache License Version 2.0
