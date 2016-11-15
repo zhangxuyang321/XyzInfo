@@ -12,12 +12,13 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
+
+import static java.lang.reflect.Array.getInt;
 
 /**
  * Created by xyz on 2016/11/4.
@@ -51,7 +52,7 @@ public class XyzSwitch extends View implements ValueAnimator.AnimatorUpdateListe
 
     private ValueAnimator mValueAnimator;
     private Interpolator mInterpolator = new AccelerateDecelerateInterpolator();
-    private long animDuration = 300L;
+    private long animDuration;
     private float animProgress = 0.0f;
     private boolean isRight = false;
     private boolean animIsUnderway = false;
@@ -84,8 +85,10 @@ public class XyzSwitch extends View implements ValueAnimator.AnimatorUpdateListe
         COLORCHANGESLIDER = ta.getColor(R.styleable.XyzSwitch_xSliderFromColor,0xffff5a73);
         iconWidth = (int) ta.getDimension(R.styleable.XyzSwitch_xIconWidth,80);
         iconHeight = (int) ta.getDimension(R.styleable.XyzSwitch_xIconHeight,80);
+        animDuration = ta.getInt(R.styleable.XyzSwitch_xChangedTime,300);
         xyzLeftIcon = BitmapFactory.decodeResource(getResources(), ta.getResourceId(R.styleable.XyzSwitch_xLeftIcon,0));
         xyzRightIcon = BitmapFactory.decodeResource(getResources(), ta.getResourceId(R.styleable.XyzSwitch_xRightIcon,0));
+
         ta.recycle();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -155,7 +158,6 @@ public class XyzSwitch extends View implements ValueAnimator.AnimatorUpdateListe
 
 
     //去色
-    @NonNull
     private ColorMatrixColorFilter getColorMatrixColorFilter() {
         ColorMatrix cm = new ColorMatrix(
                 new float[]{

@@ -12,5 +12,6 @@
         <attr name="xSliderToColor" format="color" />
         <attr name="xLeftIcon" format="reference" />
         <attr name="xRightIcon" format="reference" />
+        <attr name="xChangedTime" format="integer" />
     </declare-styleable>
 </resources>

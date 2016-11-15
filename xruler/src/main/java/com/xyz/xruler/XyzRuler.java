@@ -46,6 +46,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
 
     private float borderWidth;      //边框宽度
     private float lineWidth;        //刻度线宽
+    private long  animTime;         //回弹基准时间
     private int borderColor;        //边框颜色
     private int lineColor;          //线的颜色
     private int trigonSize;         //三角边长
@@ -91,6 +92,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         selectItem = begin;
         end = ta.getInt(R.styleable.XyzRuler_rEnd, 1000);
         minVelocity = ta.getInt(R.styleable.XyzRuler_rMinVelocity, 500);
+        animTime = ta.getInt(R.styleable.XyzRuler_rAnimTime,300);
         indicateHeight = (int) ta.getDimension(R.styleable.XyzRuler_rIndicateHeight, 0);
         isRect = ta.getBoolean(R.styleable.XyzRuler_rIsRect, true);
         isTop = ta.getBoolean(R.styleable.XyzRuler_rIsTop, true);
@@ -294,7 +296,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
                 return;
             }
             ValueAnimator valueAnimator = ValueAnimator.ofInt(sumMoveX, halfWidth);
-            valueAnimator.setDuration(300 * (sumMoveX - halfWidth) / (halfWidth));
+            valueAnimator.setDuration(animTime * (sumMoveX - halfWidth) / (halfWidth));
             valueAnimator.setInterpolator(mInterpolator);
             valueAnimator.addListener(this);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -313,7 +315,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
             float diff = ((-sumMoveX + halfWidth) - sumPixel);
             float time = diff / halfWidth;
             ValueAnimator valueAnimator = ValueAnimator.ofInt(-sumMoveX + halfWidth, sumPixel - halfWidth);
-            valueAnimator.setDuration((long) (300 * time));
+            valueAnimator.setDuration((long) (animTime * time));
             valueAnimator.addListener(this);
             valueAnimator.setInterpolator(mInterpolator);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -339,7 +341,6 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
             throw new RuntimeException("设置所选值超出范围");
         }
         sumMoveX = -(((selectItem-begin) / step * pixel) - halfWidth);
-        System.out.println("sumMoveX=" + sumMoveX);
         invalidate();
     }
 

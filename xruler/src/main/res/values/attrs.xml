@@ -15,6 +15,7 @@
         <attr name="rBegin" format="integer" />
         <attr name="rEnd" format="integer" />
         <attr name="rMinVelocity" format="integer" />
+        <attr name="rAnimTime" format="integer" />
         <attr name="rIndicateHeight" format="dimension" />
         <attr name="rIsRect" format="boolean" />
         <attr name="rIsTop" format="boolean" />
