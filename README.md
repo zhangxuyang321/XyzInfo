@@ -1,6 +1,12 @@
 # XyzInfo
 
       自定义Switch 和 Ruler控件
+
+### UI
+   [Download Demo](https://github.com/zhangxuyang321/XyzInfo/blob/master/apk/demo.apk)
+   
+   ![1](https://github.com/zhangxuyang321/XyzInfo/blob/master/ui/2.gif)
+
 ###介绍
 
       xSwitch | xRuler
@@ -19,11 +25,6 @@
                                   |支持Fling滑动
                                   |支持设置默认值
                                   |支持自定义设置回弹动画基本时间
-      
-### UI
-   [Download Demo](https://github.com/zhangxuyang321/XyzInfo/blob/master/apk/demo.apk)
-   
-   ![1](https://github.com/zhangxuyang321/XyzInfo/blob/master/ui/2.gif)
    
 ### xswitch使用
 
