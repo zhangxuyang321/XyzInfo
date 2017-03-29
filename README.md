@@ -9,22 +9,22 @@
 
 ###介绍
 
-      xSwitch | xRuler
-      --- | ---
-      支持背与滑块颜色自定义          | 支持两种显示模式
-      支持颜色过渡动画               | 支持上下两种刻度
-      支持自定义圆角弧度             | 支持自定义指示器颜色大小
-      支持自定义宽高比               |支持自定义刻度之间像素数目(间距)
-      支持自定义滑块与背景大小比例     |支持自定义刻度线宽度
-      支持自定义图片(建议灰色)以及大小 |支持自定义刻度基本单位(最小刻度单位)
-      支持自定义滑动时间             |支持自定义起止范围
-                                  |支持自定义字体颜色大小
-                                  |支持自定义最小滑动速率
-                                  |支持自定义刻度与文字之间距离
-                                  |支持边界回弹动画
-                                  |支持Fling滑动
-                                  |支持设置默认值
-                                  |支持自定义设置回弹动画基本时间
+xSwitch | xRuler
+--- | ---
+支持背与滑块颜色自定义 | 支持两种显示模式
+支持颜色过渡动画      | 支持上下两种刻度
+支持自定义圆角弧度    | 支持自定义指示器颜色大小
+支持自定义宽高比      |支持自定义刻度之间像素数目(间距)
+支持自定义滑块与背景大小比例 |支持自定义刻度线宽度
+支持自定义图片(建议灰色)以及大小 |支持自定义刻度基本单位(最小刻度单位)
+支持自定义滑动时间             |支持自定义起止范围
+                            |支持自定义字体颜色大小
+                            |支持自定义最小滑动速率
+                            |支持自定义刻度与文字之间距离
+                            |支持边界回弹动画
+                            |支持Fling滑动
+                            |支持设置默认值
+                            |支持自定义设置回弹动画基本时间
    
 ### xswitch使用
 
@@ -36,20 +36,20 @@
     
 ###### 属性介绍
     
-    属性 | 介绍 | 类型 | 默认 | 是否必须
-    --- | --- | --- | --- | ---
-    xRadian | 圆角弧度 | dimension | 45 |否
-    xASPECTRATIO | 宽高比 | float | 0.37f | 否
-    xASPEERRATIO | 滑块与背景宽度比 | float | 0.56f | 否
-    xIconWidth | 图片宽度 |dimension | 80 | 否
-    xIconHeight | 图片高度 | dimension | 80 | 否
-    xBackgroundFromColor | 背景起始颜色 | color |0xff443c6f | 否
-    xBackgroundToColor |背景终止颜色 | color | 0xffff5a73 | 否
-    xSliderFromColor | 滑块起始颜色 | color | 0xffff5a73 | 否
-    xSliderToColor |滑块终止颜色 | color | 0xff443c6f | 否
-    xChangedTime | 滑块滑动时间 | int | 300 | 否
-    xLeftIcon | 左侧图片 | reference | null | 是
-    xRightIcon | 右侧图片 | reference | null |是
+属性 | 介绍 | 类型 | 默认 | 是否必须
+--- | --- | --- | --- | ---
+xRadian | 圆角弧度 | dimension | 45 |否
+xASPECTRATIO | 宽高比 | float | 0.37f | 否
+xASPEERRATIO | 滑块与背景宽度比 | float | 0.56f | 否
+xIconWidth | 图片宽度 |dimension | 80 | 否
+xIconHeight | 图片高度 | dimension | 80 | 否
+xBackgroundFromColor | 背景起始颜色 | color |0xff443c6f | 否
+xBackgroundToColor |背景终止颜色 | color | 0xffff5a73 | 否
+xSliderFromColor | 滑块起始颜色 | color | 0xffff5a73 | 否
+xSliderToColor |滑块终止颜色 | color | 0xff443c6f | 否
+xChangedTime | 滑块滑动时间 | int | 300 | 否
+xLeftIcon | 左侧图片 | reference | null | 是
+xRightIcon | 右侧图片 | reference | null |是
     
 ###### 代码
       
@@ -89,26 +89,26 @@
 
 ###### 属性介绍
 
-    属性 | 介绍 | 类型 | 默认 | 是否必须
-    --- | --- | --- | --- | ---
-    rBorderWidth | 边框宽度(指针模式下为指针宽度)| dimension | 8 | 否
-    rBorderColor | 边框颜色(指针模式下为指针颜色)| color | Color.BLUE | 否
-    rLineColor | 刻度线的颜色 | color | Color.WHITE | 否
-    rTrigonSize | 边框模式下三角形大小 | dimension | 20 | 否
-    rPixel | 最小刻度像素大小 | integer | 15 | 否
-    rStep | 刻度最小单位 | integer | 1 | 否
-    rLineWidth | 刻度线宽度 | dimension | 2 | 否
-    rTextSize | 刻度文字大小 | dimension | 30 | 否
-    rTextColor | 刻度文字颜色 | color | Color.WHITE | 否
-    rLineHeight | 刻度线高度 | dimension | 25 | 否
-    rLineToText | 刻度文字与刻度线距离 | dimension | 35 | 否
-    rBegin | 刻度尺范围开始值 | integer | 0 | 否
-    rEnd | 刻度尺范围结束值 | integer | 1000 | 否
-    rMinVelocity | 触发惯性滑动的最小速率 | integer | 500 | 否
-    rAnimTime | 回弹动画时间基准值 | integer | 300 | 否
-    rIndicateHeight | 指针高度差值(数值越大高度越小) | dimension | 0 | 否
-    rIsRect | 是否是边框模式 | boolean | true | 否
-    rIsTop | 刻度线是否在顶部 | boolean | true | 否
+属性 | 介绍 | 类型 | 默认 | 是否必须
+--- | --- | --- | --- | ---
+rBorderWidth | 边框宽度(指针模式下为指针宽度)| dimension | 8 | 否
+rBorderColor | 边框颜色(指针模式下为指针颜色)| color | Color.BLUE | 否
+rLineColor | 刻度线的颜色 | color | Color.WHITE | 否
+rTrigonSize | 边框模式下三角形大小 | dimension | 20 | 否
+rPixel | 最小刻度像素大小 | integer | 15 | 否
+rStep | 刻度最小单位 | integer | 1 | 否
+rLineWidth | 刻度线宽度 | dimension | 2 | 否
+rTextSize | 刻度文字大小 | dimension | 30 | 否
+rTextColor | 刻度文字颜色 | color | Color.WHITE | 否
+rLineHeight | 刻度线高度 | dimension | 25 | 否
+rLineToText | 刻度文字与刻度线距离 | dimension | 35 | 否
+rBegin | 刻度尺范围开始值 | integer | 0 | 否
+rEnd | 刻度尺范围结束值 | integer | 1000 | 否
+rMinVelocity | 触发惯性滑动的最小速率 | integer | 500 | 否
+rAnimTime | 回弹动画时间基准值 | integer | 300 | 否
+rIndicateHeight | 指针高度差值(数值越大高度越小) | dimension | 0 | 否
+rIsRect | 是否是边框模式 | boolean | true | 否
+rIsTop | 刻度线是否在顶部 | boolean | true | 否
     
 ###### 代码
 
