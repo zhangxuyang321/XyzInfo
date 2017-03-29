@@ -17,14 +17,14 @@ xSwitch | xRuler
 支持自定义宽高比      |支持自定义刻度之间像素数目(间距)
 支持自定义滑块与背景大小比例 |支持自定义刻度线宽度
 支持自定义图片(建议灰色)以及大小 |支持自定义刻度基本单位(最小刻度单位)
-支持自定义滑动时间             |支持自定义起止范围
-                            |支持自定义字体颜色大小
-                            |支持自定义最小滑动速率
-                            |支持自定义刻度与文字之间距离
-                            |支持边界回弹动画
-                            |支持Fling滑动
-                            |支持设置默认值
-                            |支持自定义设置回弹动画基本时间
+支持自定义滑动时间    |支持自定义起止范围
+                   |支持自定义字体颜色大小
+                   |支持自定义最小滑动速率
+                   |支持自定义刻度与文字之间距离
+                   |支持边界回弹动画
+                   |支持Fling滑动
+                   |支持设置默认值
+                   |支持自定义设置回弹动画基本时间
    
 ### xswitch使用
 
@@ -53,8 +53,10 @@ xRightIcon | 右侧图片 | reference | null |是
     
 ###### 代码
       
-     ```
-     XyzSwitch xSwitch =  (XyzSwitch) findViewById(R.id.xswitch);
+
+```java
+
+     XyzSwitch xSwitch =  (XyzSwitch) findViewById(R.id.xswitch);
      xSwitch.setOnXyzSwitchChangeListener(new XyzSwitch.XyzSwitchChange() {
             @Override
             public void changed(boolean isRight) {
@@ -62,11 +64,11 @@ xRightIcon | 右侧图片 | reference | null |是
             }
         });
      
-     ```
+```
     
 ###### layout
 
-      ```
+```xml
       <com.xyz.xswitch.XyzSwitch
         android:id="@+id/xswitch"
         android:layout_width="200dp"
@@ -79,7 +81,7 @@ xRightIcon | 右侧图片 | reference | null |是
         app:xRadian="40dp"
         app:xChangedTime="100"
         app:xRightIcon="@mipmap/man" />
-      ```
+ ```
       
 ### xRuler使用
 
@@ -112,7 +114,7 @@ rIsTop | 刻度线是否在顶部 | boolean | true | 否
     
 ###### 代码
 
-      ```
+```java
        /**
          * 设置选中的条目
          */
@@ -131,11 +133,11 @@ rIsTop | 刻度线是否在顶部 | boolean | true | 否
                 tv1.setText("体重\n"+value+"\nkg");
             }
         });
-      ```
+```
    
 ###### layout
 
-      ```
+```xml
       <com.xyz.xruler.XyzRuler
             android:id="@+id/ruler1"
             android:layout_width="242dp"
@@ -150,7 +152,7 @@ rIsTop | 刻度线是否在顶部 | boolean | true | 否
             app:rTextSize="10dp"
             app:rTrigonSize="20dp" />
       
-      ```
+ ```
       
 ### LICENSE 开源协议
 
