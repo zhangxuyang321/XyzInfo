@@ -44,10 +44,11 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
     private boolean isAnim = false;
     private boolean isLeft;
     private boolean isDrag = true;
+    private boolean flag = true;    //在fling下判断防止死循环
 
     private float borderWidth;      //边框宽度
     private float lineWidth;        //刻度线宽
-    private long  animTime;         //回弹基准时间
+    private long animTime;         //回弹基准时间
     private int borderColor;        //边框颜色
     private int lineColor;          //线的颜色
     private int trigonSize;         //三角边长
@@ -93,7 +94,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         selectItem = begin;
         end = ta.getInt(R.styleable.XyzRuler_rEnd, 1000);
         minVelocity = ta.getInt(R.styleable.XyzRuler_rMinVelocity, 500);
-        animTime = ta.getInt(R.styleable.XyzRuler_rAnimTime,300);
+        animTime = ta.getInt(R.styleable.XyzRuler_rAnimTime, 300);
         indicateHeight = (int) ta.getDimension(R.styleable.XyzRuler_rIndicateHeight, 0);
         isRect = ta.getBoolean(R.styleable.XyzRuler_rIsRect, true);
         isTop = ta.getBoolean(R.styleable.XyzRuler_rIsTop, true);
@@ -130,7 +131,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                if(null!= onSelectItem){
+                if (null != onSelectItem) {
                     selectItem = onSelectItem.setSelectItem();
                 }
                 selectItem();
@@ -191,8 +192,9 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
     }
 
     private void drawBoarder(Canvas canvas) {
+        //背景边框
         canvas.drawRect(borderRectF, bPaint);
-
+        //三角指示器
         Path path = new Path();
         path.moveTo(halfWidth - trigonSize / 2, isTop ? 0 : mHeight);
         path.lineTo(halfWidth + trigonSize / 2, isTop ? 0 : mHeight);
@@ -202,9 +204,11 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
     }
 
     private void drawLineIndicate(Canvas canvas) {
+        //基线
         lPaint.setColor(lineColor);
         lPaint.setStrokeWidth(lineWidth);
         canvas.drawLine(0, isTop ? 0 : mHeight, mWidth, isTop ? 0 : mHeight, lPaint);
+        //线性指示器
         lPaint.setColor(borderColor);
         lPaint.setStrokeWidth(borderWidth);
         canvas.drawLine(halfWidth, isTop ? 0 : mHeight, halfWidth, isTop ? mHeight - indicateHeight : indicateHeight, lPaint);
@@ -216,7 +220,6 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
             velocityTracker = VelocityTracker.obtain();
         }
         velocityTracker.addMovement(event);
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 downX = (int) event.getX();
@@ -269,18 +272,20 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
 
     @Override
     public void computeScroll() {
-        if (scroller.computeScrollOffset()) {
+        boolean offset = scroller.computeScrollOffset();
+        if (offset) {
             int currX = scroller.getCurrX();
             if (sumMoveX >= mWidth) {
-                correct();
                 scroller.abortAnimation();
+                correct();
                 return;
             }
             if (-sumMoveX >= sumPixel) {
-                correct();
                 scroller.abortAnimation();
+                correct();
                 return;
             }
+            flag = true;
             if (isLeft) {
                 sumMoveX -= currX;
             } else {
@@ -290,18 +295,20 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         } else {
             if (!isDrag) {
                 if (sumMoveX > halfWidth || -sumMoveX + halfWidth > sumPixel) {
-                    correct();
                     scroller.abortAnimation();
+                    correct();
                 }
             }
+        }
+        if (!offset && flag) {
+            flag = false;
+            checkOutData();
         }
     }
 
     private void correct() {
         if (sumMoveX > halfWidth) {
-            if (isAnim) {
-                return;
-            }
+            if (isAnim) return;
             ValueAnimator valueAnimator = ValueAnimator.ofInt(sumMoveX, halfWidth);
             valueAnimator.setDuration(animTime * (sumMoveX - halfWidth) / (halfWidth));
             valueAnimator.setInterpolator(mInterpolator);
@@ -316,9 +323,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
             valueAnimator.start();
         }
         if (-sumMoveX + halfWidth > sumPixel) {
-            if (isAnim) {
-                return;
-            }
+            if (isAnim) return;
             float diff = ((-sumMoveX + halfWidth) - sumPixel);
             float time = diff / halfWidth;
             ValueAnimator valueAnimator = ValueAnimator.ofInt(-sumMoveX + halfWidth, sumPixel - halfWidth);
@@ -334,6 +339,9 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
             });
             valueAnimator.start();
         }
+
+
+        checkOutData();
     }
 
     private void recycleVelocityTracker() {
@@ -347,7 +355,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
         if (selectItem > end || selectItem < begin) {
             throw new RuntimeException("设置所选值超出范围");
         }
-        sumMoveX = -(((selectItem-begin) / step * pixel) - halfWidth);
+        sumMoveX = -(((selectItem - begin) / step * pixel) - halfWidth);
         invalidate();
     }
 
@@ -387,7 +395,28 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
     }
 
     /**
+     * 校验数据是否在刻度上,如果不在则对像素进行调整
+     */
+    private void checkOutData() {
+        if (sumMoveX < halfWidth || -sumMoveX + halfWidth < sumPixel) {
+            int initData = -sumMoveX + halfWidth;
+            int checkAfterData = initData;
+            int dValue = initData % pixel;
+            if (dValue != 0) {
+                if (dValue > (pixel / 2)) {
+                    checkAfterData = initData + (pixel - dValue);
+                } else {
+                    checkAfterData = initData - dValue;
+                }
+            }
+            sumMoveX = -(checkAfterData - halfWidth);
+            postInvalidate();
+        }
+    }
+
+    /**
      * 设置选中的条目因需要在加载完成后设置才有用,所以才用接口的形式
+     *
      * @param onSelectItem 设置选中的Item
      */
     public void setOnSelectItem(SelectItem onSelectItem) {
@@ -396,7 +425,7 @@ public class XyzRuler extends View implements ValueAnimator.AnimatorListener {
 
     private SelectItem onSelectItem;
 
-    public interface SelectItem{
+    public interface SelectItem {
         int setSelectItem();
     }
 }
