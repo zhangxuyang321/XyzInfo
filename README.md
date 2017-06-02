@@ -88,7 +88,7 @@ xRightIcon | 右侧图片 | reference | null |是
 
 ###### Gradle   
             
-         compile 'com.xyz.xruler:xruler:1.0.3' 
+         compile 'com.xyz.xruler:xruler:1.0.4' 
 
 ###### 属性介绍
 
